@@ -1,0 +1,122 @@
+<app-navbar></app-navbar>
+
+<div class="container mt-4">
+  <div class="row mb-4">
+    <div class="col-md-6">
+      <input 
+        type="text" 
+        class="form-control" style="background-color: #373b41; border-color: #969896;"
+        placeholder="Pretraži knjige..."
+        [(ngModel)]="searchQuery"
+        (ngModelChange)="onSearchChange($event)"
+      >
+    </div>
+    <div class="col-md-6 mt-3 mt-md-0">
+      <select class="form-select" [(ngModel)]="selectedFilter" (change)="applyFilter()" style="background-color: #373b41; border-color: #969896;" >
+        <option value="">Svi žanrovi</option>
+        <option value="subject:fiction">Fikcija</option>
+        <option value="subject:nonfiction">Ne-fikcija</option>
+        <option value="subject:mystery">Misterija</option>
+        <option value="subject:romance">Romansa</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">
+    @for (book of books; track book.id) {
+      <div class="col">
+        <div class="card h-100">
+          <img 
+            [src]="book.volumeInfo.imageLinks?.thumbnail || 'assets/no-cover.png'" 
+            class="card-img-top" 
+            alt="Book cover"
+          >
+          <div class="card-body">
+            <h5 class="card-title">{{ book.volumeInfo.title }}</h5>
+            <p class="card-text">
+              <small>
+                {{ book.volumeInfo.authors?.join(', ') || 'Nepoznat autor' }}
+              </small>
+            </p>
+            <p class="card-text description">
+              {{ book.volumeInfo.description || 'Nema opisa' }}
+            </p>
+            <div class="d-flex justify-content-between align-items-center">
+              <button 
+                class="btn btn-add"
+                (click)="addToReadingList(book)"
+                title="Dodaj na listu za čitanje">
+                <i class="fas fa-plus"></i>
+              </button>
+              <button 
+                class="btn btn-outline-primary btn-sm"
+                (click)="showFullDescription(book)"
+                *ngIf="book.volumeInfo.description">
+                Show more
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    }
+    @if (books.length === 0) {
+      <div class="col-12 text-center">
+        <p>Nema pronađenih knjiga</p>
+      </div>
+    }
+  </div>
+
+  <router-outlet></router-outlet>
+
+  <!-- Modal za prikaz punog opisa -->
+  <div 
+    class="modal fade" 
+    [class.show]="selectedBook" 
+    [style.display]="selectedBook ? 'block' : 'none'"
+    tabindex="-1" 
+    role="dialog"
+    aria-labelledby="bookDescriptionModal"
+    [class.modal-open]="selectedBook"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content text-light">
+        <div class="modal-header border-secondary">
+          <h5 class="modal-title">{{ selectedBook?.volumeInfo?.title }}</h5>
+          <button type="button" class="btn-close btn-close-white" (click)="closeModal()"></button>
+        </div>
+        <div class="modal-body">
+          <p><small class="text-white">
+            {{ selectedBook?.volumeInfo?.authors?.join(', ') || 'Nepoznat autor' }}
+          </small></p>
+          <p>{{ selectedBook?.volumeInfo?.description }}</p>
+        </div>
+        <div class="modal-footer border-secondary">
+          <button type="button" class="btn btn-secondary" (click)="closeModal()">Zatvori</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div 
+    class="modal-backdrop fade" 
+    [class.show]="selectedBook"
+    [style.display]="selectedBook ? 'block' : 'none'"
+  ></div>
+
+  <!-- Toast notifikacija -->
+  <div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+    <div 
+      class="toast align-items-center text-white bg-success border-0" 
+      [class.show]="showToast"
+      role="alert" 
+      aria-live="assertive" 
+      aria-atomic="true"
+    >
+      <div class="d-flex">
+        <div class="toast-body">
+          Knjiga je uspješno dodana na listu čitanja
+        </div>
+        <button type="button" class="btn-close btn-close-white me-2 m-auto" (click)="hideToast()"></button>
+      </div>
+    </div>
+  </div>
+</div>

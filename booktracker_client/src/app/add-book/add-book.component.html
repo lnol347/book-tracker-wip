@@ -1,0 +1,52 @@
+<app-navbar></app-navbar>
+<div class="container mt-4">
+  <h2 class="text-light">Add New Book</h2>
+  <form (ngSubmit)="onSubmit()" #bookForm="ngForm" class="mt-3">
+    <div class="mb-3">
+      <label for="title" class="form-label">Book Title</label>
+      <input 
+        type="text" 
+        class="form-control" 
+        id="title" 
+        name="title"
+        [(ngModel)]="book.title" 
+        required>
+    </div>
+
+    <div class="mb-3">
+      <label for="author" class="form-label">Author</label>
+      <input 
+        type="text" 
+        class="form-control" 
+        id="author" 
+        name="author"
+        [(ngModel)]="book.author" 
+        required>
+    </div>
+
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea 
+        class="form-control" 
+        id="description" 
+        name="description"
+        [(ngModel)]="book.description" 
+        rows="3">
+      </textarea>
+    </div>
+
+    <div class="mb-3">
+      <label for="coverImage" class="form-label">Cover Image</label>
+      <input 
+        type="file" 
+        class="form-control" 
+        id="coverImage"
+        (change)="onFileSelected($event)"
+        accept="image/*">
+    </div>
+
+    <button type="submit" class="btn btn-primary" [disabled]="!bookForm.form.valid">
+      Add Book
+    </button>
+  </form>
+</div>

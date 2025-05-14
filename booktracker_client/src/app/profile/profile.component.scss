@@ -1,0 +1,61 @@
+.card-img-top {
+  height: 200px;
+  object-fit: contain;
+}
+
+.card {
+  background-color: #373b41;
+
+}
+
+.card::content{
+  color: #d6d6d6;
+}
+
+.btn-primary{
+  background-color: #81a2be;
+  border-color: #d6d6d6;
+}
+
+.btn-danger {
+  background-color: #cc6666;
+  border-color: #d54e53;
+}
+.btn-outline-primary {
+  --bs-btn-color: #81a2be;
+  --bs-btn-border-color: #81a2be;
+  --bs-btn-hover-bg: #81a2be;
+  --bs-btn-hover-border-color: #efefef;
+}
+.description {
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  box-orient: vertical;
+  overflow: hidden;
+  font-size: 0.9rem;
+  max-height: 4.5em; // fallback za browsere koji ne podržavaju line-clamp
+}
+
+.modal-content {
+  background-color: #373b41;
+}
+
+.modal.show {
+  display: block;
+  background-color: rgba(0,0,0,0.5);
+}
+
+.modal-backdrop.show {
+  opacity: 0;
+}
+
+.toast {
+  transition: opacity 0.3s ease-in-out;
+  opacity: 0;
+  
+  &.show {
+    opacity: 1;
+  }
+}

@@ -1,0 +1,12 @@
+@import "node_modules/bootstrap/scss/bootstrap";
+
+body {
+    background-color: #36383c;
+    font-family: 'Times New Roman', serif;
+}
+
+$primary: #81a2be; 
+
+$theme-colors: (
+  "primary": #81a2be,
+);

@@ -1,0 +1,31 @@
+.container {
+  color: #dfdfdf;
+  max-width: 600px;
+  
+  h2 {
+    color: #333;
+    margin-bottom: 1.5rem;
+  }
+
+  .form-label {
+    font-weight: 500;
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+
+  .btn-primary {
+    margin-top: 1rem;
+    
+    &:disabled {
+      opacity: 0.7;
+    }
+  }
+}
+
+.btn-primary{
+  background-color: #81a2be;
+  border-color: #d6d6d6;
+}
