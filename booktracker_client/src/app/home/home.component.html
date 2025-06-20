@@ -6,12 +6,12 @@
       <input 
         type="text" 
         class="form-control" style="background-color: #373b41; border-color: #969896;"
-        placeholder="Pretraži knjige..."
+        placeholder="Search for books..."
         [(ngModel)]="searchQuery"
         (ngModelChange)="onSearchChange($event)"
       >
     </div>
-    <div class="col-md-6 mt-3 mt-md-0">
+    <!--<div class="col-md-6 mt-3 mt-md-0">
       <select class="form-select" [(ngModel)]="selectedFilter" (change)="applyFilter()" style="background-color: #373b41; border-color: #969896;" >
         <option value="">Svi žanrovi</option>
         <option value="subject:fiction">Fikcija</option>
@@ -19,7 +19,7 @@
         <option value="subject:mystery">Misterija</option>
         <option value="subject:romance">Romansa</option>
       </select>
-    </div>
+    </div>-->
   </div>
 
   <div class="row row-cols-1 row-cols-md-3 row-cols-lg-4 g-4">

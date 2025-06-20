@@ -178,7 +178,6 @@ CORS_ALLOW_HEADERS = [
 # Media postavke za upload slika
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
-
 '''
 LOGGING = {
     'version': 1,

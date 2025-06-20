@@ -33,8 +33,9 @@ export class BookService {
   // Base URL za API zahtjeve
   baseApiUrl = 'http://localhost:8000/api';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {} // konstruktor za http zahtjeve
 
+  // Pretraživanje knjiga preko Google Books API-ja
   searchBooks(query: string, filter: string = ''): Observable<GoogleBook[]> {
     return this.http.get<any>(`${this.baseApiUrl}/search-books/?q=${query}${filter ? '&' + filter : ''}`).pipe(
       map(response => response.items || [])

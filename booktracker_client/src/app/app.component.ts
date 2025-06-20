@@ -14,4 +14,9 @@ export class AppComponent {
   
   title = 'booktracker_client';
 
+  /*getBooks() {
+    this.http.get('http://your-api-endpoint.com/books').subscribe(data => {
+      console.log(data);
+    });
+  }*/
 }
