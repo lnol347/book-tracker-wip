@@ -13,7 +13,6 @@ export const authInterceptor: HttpInterceptorFn = (
 ): Observable<HttpEvent<unknown>> => {
   const token = localStorage.getItem('token');
     
-  // Ne dodajemo token za Google Books API pozive
   if (req.url.includes('googleapis.com')) {
     return next(req);
   }
